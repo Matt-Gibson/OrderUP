@@ -26,7 +26,7 @@ while (userWishesToContinue)
             string? customerName = Console.ReadLine();
             Console.WriteLine("Enter a Priority");
             int priority = int.Parse(Console.ReadLine()!);
-            itemList.Add(new LineItem(quantity, metalColor, customerName, priority));
+            itemList.Add(LineItem.createLineItem(quantity, metalColor, customerName, priority));
             break;
         case 2:
             Console.WriteLine("Current List");
@@ -44,6 +44,7 @@ while (userWishesToContinue)
             break;
         case 4:
             Console.WriteLine("Which Item Shall Be Deleted?");
+            itemList.RemoveAt(int.Parse(Console.ReadLine()!));
             break;
         case 5:
             Console.WriteLine("Goodbye!");
