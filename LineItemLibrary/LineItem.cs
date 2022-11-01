@@ -24,31 +24,31 @@ public class LineItem
         return new LineItem(quantity, metalColor, customerName, priorityFactor);
     }
 
-    public LineItem updateLineItem(LineItem itemToUpdate, int newQuantity)
+    public static LineItem updateLineItem(LineItem itemToUpdate, int newQuantity)
     { 
        itemToUpdate.quantity = newQuantity;
         return itemToUpdate;
     }
 
-    public LineItem updateLineItem(LineItem itemToUpdate, string? newMetalColor)
+    public static LineItem updateLineItem(LineItem itemToUpdate, string? newMetalColor)
     {
         itemToUpdate.metalColor = newMetalColor;
         return itemToUpdate;
     }
 
-    public LineItem updateLineItem(LineItem itemToUpdate, string? newCustomerName, bool overLoad)
+    public static LineItem updateLineItem(LineItem itemToUpdate, string? newCustomerName, bool overLoad)
     {
         itemToUpdate.customerName = newCustomerName;
         return itemToUpdate;
     }
 
-    public LineItem updateLineItem(LineItem itemToUpdate, int newPriorityFactor, bool overLoad)
+    public static LineItem updateLineItem(LineItem itemToUpdate, int newPriorityFactor, bool overLoad)
     {
         itemToUpdate.priorityFactor = newPriorityFactor;
         return itemToUpdate;
     }
 
-    public LineItem updateLineItem(LineItem itemToUpdate, bool newIsMade)
+    public static LineItem updateLineItem(LineItem itemToUpdate, bool newIsMade)
     {
         itemToUpdate.isMade = newIsMade;
         return itemToUpdate;

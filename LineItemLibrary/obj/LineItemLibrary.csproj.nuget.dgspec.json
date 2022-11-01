@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gibso\\Documents\\Code\\OrderUP\\LineItemLibrary\\LineItemLibrary.csproj": {}
+    "C:\\Users\\IT\\Desktop\\Matt\\code\\OrderUP\\LineItemLibrary\\LineItemLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gibso\\Documents\\Code\\OrderUP\\LineItemLibrary\\LineItemLibrary.csproj": {
+    "C:\\Users\\IT\\Desktop\\Matt\\code\\OrderUP\\LineItemLibrary\\LineItemLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gibso\\Documents\\Code\\OrderUP\\LineItemLibrary\\LineItemLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\IT\\Desktop\\Matt\\code\\OrderUP\\LineItemLibrary\\LineItemLibrary.csproj",
         "projectName": "LineItemLibrary",
-        "projectPath": "C:\\Users\\Gibso\\Documents\\Code\\OrderUP\\LineItemLibrary\\LineItemLibrary.csproj",
-        "packagesPath": "C:\\Users\\Gibso\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gibso\\Documents\\Code\\OrderUP\\LineItemLibrary\\obj\\",
+        "projectPath": "C:\\Users\\IT\\Desktop\\Matt\\code\\OrderUP\\LineItemLibrary\\LineItemLibrary.csproj",
+        "packagesPath": "C:\\Users\\IT\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\IT\\Desktop\\Matt\\code\\OrderUP\\LineItemLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Gibso\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\IT\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

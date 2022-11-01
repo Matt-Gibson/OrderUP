@@ -1,4 +1,5 @@
 ﻿using LineItemLibrary;
+using Newtonsoft.Json;
 
 Console.WriteLine("Welcome to OrderUp");
 Console.WriteLine("");
@@ -82,6 +83,8 @@ while (userWishesToContinue)
             break;
         case 5:
             Console.WriteLine("Goodbye!");
+            string saveState = JsonConvert.SerializeObject(itemList);
+            File.WriteAllText("WorkingList.txt", saveState);
             userWishesToContinue = false;
             break;
         default:
