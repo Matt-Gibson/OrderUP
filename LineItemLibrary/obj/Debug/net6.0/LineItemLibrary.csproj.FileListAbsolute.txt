@@ -1,0 +1,12 @@
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\obj\Debug\net6.0\LineItemLibrary.csproj.AssemblyReference.cache
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\obj\Debug\net6.0\LineItemLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\obj\Debug\net6.0\LineItemLibrary.AssemblyInfoInputs.cache
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\obj\Debug\net6.0\LineItemLibrary.AssemblyInfo.cs
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\obj\Debug\net6.0\LineItemLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\bin\Debug\net6.0\LineItemLibrary.deps.json
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\bin\Debug\net6.0\LineItemLibrary.dll
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\bin\Debug\net6.0\LineItemLibrary.pdb
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\obj\Debug\net6.0\LineItemLibrary.dll
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\obj\Debug\net6.0\refint\LineItemLibrary.dll
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\obj\Debug\net6.0\LineItemLibrary.pdb
+C:\Users\Gibso\Documents\Code\OrderUP\LineItemLibrary\obj\Debug\net6.0\ref\LineItemLibrary.dll
