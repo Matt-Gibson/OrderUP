@@ -84,7 +84,7 @@ while (userWishesToContinue)
         case 5:
             Console.WriteLine("Goodbye!");
             string saveState = JsonConvert.SerializeObject(itemList);
-            File.WriteAllText("WorkingList.txt", saveState);
+            File.WriteAllText(@"C:\\temp\WorkingList.txt", saveState);
             userWishesToContinue = false;
             break;
         default:
