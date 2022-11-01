@@ -8,6 +8,11 @@ Console.WriteLine("What would you like to do?");
 var itemList = new List<LineItem>();
 bool userWishesToContinue = true;
 
+//if (File.Exists(@"C:\\temp\WorkingList.txt"))
+//{
+//    string loadingString = File.ReadAllText(@"C:\\temp\WorkingList.txt");
+//    itemList = JsonConvert.DeserializeObject<LineItem>(loadingString);
+//}
 while (userWishesToContinue)
 {
     Console.WriteLine("[1] Create New Item");
