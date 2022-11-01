@@ -41,6 +41,40 @@ while (userWishesToContinue)
             break;
         case 3:
             Console.WriteLine("Which Item Shall Be Updated?");
+            int lineNumber = int.Parse(Console.ReadLine()!);
+
+            Console.WriteLine("What do you wish to update?");
+            Console.WriteLine("[1] Quantity");
+            Console.WriteLine("[2] Metal Color");
+            Console.WriteLine("[3] Customer Name");
+            Console.WriteLine("[4] Priority");
+            int selection = int.Parse((string)Console.ReadLine()!);
+
+            switch (selection)
+            {
+                case 1:
+                    Console.WriteLine("Enter New Quantity");
+                    int newQuantity = int.Parse(Console.ReadLine()!);
+                    itemList[lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newQuantity);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter New Metal Color");
+                    string? newMetalColor = Console.ReadLine();
+                    itemList[lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newMetalColor);
+                    break;
+                case 3:
+                    Console.WriteLine("Enter New Customer Name");
+                    string? newCustomerName = Console.ReadLine();
+                    itemList[lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newCustomerName, true);
+                    break;
+                case 4:
+                    Console.WriteLine("Enter New Priority Factor");
+                    int newPriorityFactor = int.Parse(Console.ReadLine()!);
+                    itemList[lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newPriorityFactor, true);
+                    break;
+                default:
+                    break;
+            }
             break;
         case 4:
             Console.WriteLine("Which Item Shall Be Deleted?");
