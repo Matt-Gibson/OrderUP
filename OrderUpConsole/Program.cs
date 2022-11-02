@@ -8,11 +8,11 @@ Console.WriteLine("What would you like to do?");
 var itemList = new List<LineItem>();
 var userWishesToContinue = true;
 
-//if (File.Exists(@"C:\\temp\WorkingList.txt"))
-//{
-//    string loadingString = File.ReadAllText(@"C:\\temp\WorkingList.txt");
-//    itemList = JsonConvert.DeserializeObject<LineItem>(loadingString);
-//}
+if (File.Exists(@"C:\\temp\WorkingList.txt"))
+{
+    string loadingString = File.ReadAllText(@"C:\\temp\WorkingList.txt");
+    itemList = JsonConvert.DeserializeObject<List<LineItem>>(loadingString);
+}
 while (userWishesToContinue)
 {
     Console.WriteLine("[1] Create New Item");
@@ -32,11 +32,11 @@ while (userWishesToContinue)
             string? customerName = Console.ReadLine();
             Console.WriteLine("Enter a Priority");
             int priority = int.Parse(Console.ReadLine()!);
-            itemList.Add(LineItem.createLineItem(quantity, metalColor, customerName, priority));
+            itemList!.Add(LineItem.createLineItem(quantity, metalColor, customerName, priority));
             break;
         case 2:
             Console.WriteLine("Current List");
-            foreach (var lineItem in itemList)
+            foreach (var lineItem in itemList!)
             {
                 Console.WriteLine(lineItem.quantity);
                 Console.WriteLine(lineItem.metalColor);
@@ -61,22 +61,22 @@ while (userWishesToContinue)
                 case 1:
                     Console.WriteLine("Enter New Quantity");
                     int newQuantity = int.Parse(Console.ReadLine()!);
-                    itemList[lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newQuantity);
+                    itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newQuantity);
                     break;
                 case 2:
                     Console.WriteLine("Enter New Metal Color");
                     string? newMetalColor = Console.ReadLine();
-                    itemList[lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newMetalColor);
+                    itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newMetalColor);
                     break;
                 case 3:
                     Console.WriteLine("Enter New Customer Name");
                     string? newCustomerName = Console.ReadLine();
-                    itemList[lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newCustomerName, true);
+                    itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newCustomerName, true);
                     break;
                 case 4:
                     Console.WriteLine("Enter New Priority Factor");
                     int newPriorityFactor = int.Parse(Console.ReadLine()!);
-                    itemList[lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newPriorityFactor, true);
+                    itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newPriorityFactor, true);
                     break;
                 default:
                     break;
@@ -84,11 +84,11 @@ while (userWishesToContinue)
             break;
         case 4:
             Console.WriteLine("Which Item Shall Be Deleted?");
-            itemList.RemoveAt(int.Parse(Console.ReadLine()!));
+            itemList!.RemoveAt(int.Parse(Console.ReadLine()!));
             break;
         case 5:
             Console.WriteLine("Goodbye!");
-            string saveState = JsonConvert.SerializeObject(itemList);
+            string saveState = JsonConvert.SerializeObject(itemList, Formatting.Indented);
             File.WriteAllText(@"C:\\temp\WorkingList.txt", saveState);
             userWishesToContinue = false;
             break;
