@@ -6,7 +6,7 @@ Console.WriteLine("");
 Console.WriteLine("What would you like to do?");
 
 var itemList = new List<LineItem>();
-bool userWishesToContinue = true;
+var userWishesToContinue = true;
 
 //if (File.Exists(@"C:\\temp\WorkingList.txt"))
 //{
@@ -36,13 +36,13 @@ while (userWishesToContinue)
             break;
         case 2:
             Console.WriteLine("Current List");
-            foreach (var LineItem in itemList)
+            foreach (var lineItem in itemList)
             {
-                Console.WriteLine(LineItem.quantity);
-                Console.WriteLine(LineItem.metalColor);
-                Console.WriteLine(LineItem.customerName);
-                Console.WriteLine(LineItem.priorityFactor);
-                Console.WriteLine(LineItem.isMade);
+                Console.WriteLine(lineItem.quantity);
+                Console.WriteLine(lineItem.metalColor);
+                Console.WriteLine(lineItem.customerName);
+                Console.WriteLine(lineItem.priorityFactor);
+                Console.WriteLine(lineItem.isMade);
             }
             break;
         case 3:
@@ -54,7 +54,7 @@ while (userWishesToContinue)
             Console.WriteLine("[2] Metal Color");
             Console.WriteLine("[3] Customer Name");
             Console.WriteLine("[4] Priority");
-            int selection = int.Parse((string)Console.ReadLine()!);
+            int selection = int.Parse(Console.ReadLine()!);
 
             switch (selection)
             {
