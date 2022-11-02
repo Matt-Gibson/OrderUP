@@ -1,5 +1,6 @@
 ﻿using LineItemLibrary;
 using Newtonsoft.Json;
+using Spectre.Console;
 
 Console.WriteLine("Welcome to OrderUp");
 Console.WriteLine("");
