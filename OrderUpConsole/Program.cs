@@ -45,8 +45,18 @@ while (userWishesToContinue)
             
             Console.WriteLine("Enter a Customer Name");
             string? customerName = Console.ReadLine();
-            Console.WriteLine("Enter a Priority");
-            int priority = int.Parse(Console.ReadLine()!);
+
+
+            var priority = AnsiConsole.Prompt(
+                new SelectionPrompt<int>()
+                    .Title("Select a Priority Factor")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more choices)[/]")
+                    .AddChoices(new[] {
+                        1, 2, 3,
+                    }));
+
+
             itemList!.Add(LineItem.createLineItem(quantity, metalColorSelected, customerName, priority));
             break;
         case "View Current List":
@@ -79,8 +89,17 @@ while (userWishesToContinue)
                     itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newQuantity);
                     break;
                 case 2:
-                    Console.WriteLine("Enter New Metal Color");
-                    string? newMetalColor = Console.ReadLine();
+                    var newMetalColor = AnsiConsole.Prompt(
+                        new SelectionPrompt<string>()
+                            .Title("Select a Color")
+                            .PageSize(10)
+                            .MoreChoicesText("[grey](Move up and down to reveal more colors)[/]")
+                            .AddChoices(new[] {
+                        "#2 White", "Barn Red", "Black", "Bright Red", "Brown", "Buckskin Tan", "Burnished Slate",
+                        "Charcoal", "Clay", "Copper Penny", "Dark Red", "Gallery Blue", "Galvalume", "Gray",
+                        "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
+
+                            }));
                     itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newMetalColor);
                     break;
                 case 3:
@@ -89,8 +108,14 @@ while (userWishesToContinue)
                     itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newCustomerName, true);
                     break;
                 case 4:
-                    Console.WriteLine("Enter New Priority Factor");
-                    int newPriorityFactor = int.Parse(Console.ReadLine()!);
+                    var newPriorityFactor = AnsiConsole.Prompt(
+                        new SelectionPrompt<int>()
+                            .Title("Select a Priority Factor")
+                            .PageSize(10)
+                            .MoreChoicesText("[grey](Move up and down to reveal more choices)[/]")
+                            .AddChoices(new[] {
+                        1, 2, 3,
+                        }));
                     itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newPriorityFactor, true);
                     break;
                 default:
