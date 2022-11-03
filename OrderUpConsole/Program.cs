@@ -15,12 +15,6 @@ if (File.Exists(@"D:\\WorkingList.txt"))
 }
 while (userWishesToContinue)
 {
-    // Console.WriteLine("[1] Create New Item");
-    // Console.WriteLine("[2] View Current List");
-    // Console.WriteLine("[3] Update An Item");
-    // Console.WriteLine("[4] Delete An Item");
-    // Console.WriteLine("[5] Exit");
-
     var optionSelected = AnsiConsole.Prompt(
         new SelectionPrompt<string>()
             .Title("What would you like to do?")
@@ -36,13 +30,24 @@ while (userWishesToContinue)
         case "Create New Item":
             Console.WriteLine("Enter a Quantity");
             int quantity = int.Parse(Console.ReadLine()!);
-            Console.WriteLine("Enter a Metal Color");
-            string? metalColor = Console.ReadLine();
+            
+            var metalColorSelected = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Select a Color")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more colors)[/]")
+                    .AddChoices(new[] {
+                        "#2 White", "Barn Red", "Black", "Bright Red", "Brown", "Buckskin Tan", "Burnished Slate",
+                        "Charcoal", "Clay", "Copper Penny", "Dark Red", "Gallery Blue", "Galvalume", "Gray",
+                        "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
+
+                    }));
+            
             Console.WriteLine("Enter a Customer Name");
             string? customerName = Console.ReadLine();
             Console.WriteLine("Enter a Priority");
             int priority = int.Parse(Console.ReadLine()!);
-            itemList!.Add(LineItem.createLineItem(quantity, metalColor, customerName, priority));
+            itemList!.Add(LineItem.createLineItem(quantity, metalColorSelected, customerName, priority));
             break;
         case "View Current List":
             Console.WriteLine("Current List");
