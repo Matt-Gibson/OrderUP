@@ -4,27 +4,36 @@ using Spectre.Console;
 
 Console.WriteLine("Welcome to OrderUp");
 Console.WriteLine("");
-Console.WriteLine("What would you like to do?");
 
 var itemList = new List<LineItem>();
 var userWishesToContinue = true;
 
-if (File.Exists(@"C:\\temp\WorkingList.txt"))
+if (File.Exists(@"D:\\WorkingList.txt"))
 {
-    string loadingString = File.ReadAllText(@"C:\\temp\WorkingList.txt");
+    string loadingString = File.ReadAllText(@"D:\\WorkingList.txt");
     itemList = JsonConvert.DeserializeObject<List<LineItem>>(loadingString);
 }
 while (userWishesToContinue)
 {
-    Console.WriteLine("[1] Create New Item");
-    Console.WriteLine("[2] View Current List");
-    Console.WriteLine("[3] Update An Item");
-    Console.WriteLine("[4] Delete An Item");
-    Console.WriteLine("[5] Exit");
+    // Console.WriteLine("[1] Create New Item");
+    // Console.WriteLine("[2] View Current List");
+    // Console.WriteLine("[3] Update An Item");
+    // Console.WriteLine("[4] Delete An Item");
+    // Console.WriteLine("[5] Exit");
 
-    switch (int.Parse(Console.ReadLine()!))
+    var optionSelected = AnsiConsole.Prompt(
+        new SelectionPrompt<string>()
+            .Title("What would you like to do?")
+            .PageSize(10)
+            .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
+            .AddChoices(new[] {
+                "Create New Item", "View Current List", "Update an Item",
+                "Delete an Item", "Save and Exit",
+            }));
+    
+    switch (optionSelected)
     {
-        case 1:
+        case "Create New Item":
             Console.WriteLine("Enter a Quantity");
             int quantity = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter a Metal Color");
@@ -35,7 +44,7 @@ while (userWishesToContinue)
             int priority = int.Parse(Console.ReadLine()!);
             itemList!.Add(LineItem.createLineItem(quantity, metalColor, customerName, priority));
             break;
-        case 2:
+        case "View Current List":
             Console.WriteLine("Current List");
             foreach (var lineItem in itemList!)
             {
@@ -46,7 +55,7 @@ while (userWishesToContinue)
                 Console.WriteLine(lineItem.isMade);
             }
             break;
-        case 3:
+        case "Update an Item":
             Console.WriteLine("Which Item Shall Be Updated?");
             int lineNumber = int.Parse(Console.ReadLine()!);
 
@@ -83,14 +92,14 @@ while (userWishesToContinue)
                     break;
             }
             break;
-        case 4:
+        case "Delete an Item":
             Console.WriteLine("Which Item Shall Be Deleted?");
             itemList!.RemoveAt(int.Parse(Console.ReadLine()!));
             break;
-        case 5:
+        case "Save and Exit":
             Console.WriteLine("Goodbye!");
             string saveState = JsonConvert.SerializeObject(itemList, Formatting.Indented);
-            File.WriteAllText(@"C:\\temp\WorkingList.txt", saveState);
+            File.WriteAllText(@"D:\\WorkingList.txt", saveState);
             userWishesToContinue = false;
             break;
         default:
