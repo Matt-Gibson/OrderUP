@@ -8,9 +8,9 @@ Console.WriteLine("");
 var itemList = new List<LineItem>();
 var userWishesToContinue = true;
 
-if (File.Exists(@"D:\\WorkingList.txt"))
+if (File.Exists(@"C:\\temp\WorkingList.txt"))
 {
-    string loadingString = File.ReadAllText(@"D:\\WorkingList.txt");
+    string loadingString = File.ReadAllText(@"C:\\temp\WorkingList.txt");
     itemList = JsonConvert.DeserializeObject<List<LineItem>>(loadingString);
 }
 
@@ -129,39 +129,21 @@ while (userWishesToContinue)
             break;
 
         case "Delete an Item":
-            Console.WriteLine("Which Item Shall Be Deleted?");
-
 
             var selectedLineItem = AnsiConsole.Prompt(
-                        new SelectionPrompt<string>()
-                            .Title("Select a Color")
+                        new SelectionPrompt<LineItem>()
+                            .Title("Select an Item to Delete")
                             .PageSize(10)
-                            .MoreChoicesText("[grey](Move up and down to reveal more colors)[/]")
-                            .AddChoices(new[] {
-                             "#2 White", "Barn Red", "Black", "Bright Red", "Brown", "Buckskin Tan", "Burnished Slate",
-                             "Charcoal", "Clay", "Copper Penny", "Dark Red", "Gallery Blue", "Galvalume", "Gray",
-                             "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
-
-                            }));
-
-
-
-
-
-
-
-
-
-
-
-
-            itemList!.RemoveAt(int.Parse(Console.ReadLine()!));
+                            .MoreChoicesText("[grey](Move up and down to reveal more items)[/]")
+                            .AddChoices<LineItem>(itemList!));
+            
+            itemList!.Remove(selectedLineItem);
             break;
 
         case "Save and Exit":
             Console.WriteLine("Goodbye!");
             string saveState = JsonConvert.SerializeObject(itemList, Formatting.Indented);
-            File.WriteAllText(@"D:\\WorkingList.txt", saveState);
+            File.WriteAllText(@"C:\\temp\WorkingList.txt", saveState);
             userWishesToContinue = false;
             break;
 
