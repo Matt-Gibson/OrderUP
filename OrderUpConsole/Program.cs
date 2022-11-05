@@ -7,10 +7,11 @@ Console.WriteLine("");
 
 var itemList = new List<LineItem>();
 var userWishesToContinue = true;
+const string PathToJson = @"D:\\WorkingList.txt";
 
-if (File.Exists(@"C:\\temp\WorkingList.txt"))
+if (File.Exists(PathToJson))
 {
-    string loadingString = File.ReadAllText(@"C:\\temp\WorkingList.txt");
+    string loadingString = File.ReadAllText(PathToJson);
     itemList = JsonConvert.DeserializeObject<List<LineItem>>(loadingString);
 }
 
@@ -135,7 +136,8 @@ while (userWishesToContinue)
                             .Title("Select an Item to Delete")
                             .PageSize(10)
                             .MoreChoicesText("[grey](Move up and down to reveal more items)[/]")
-                            .AddChoices<LineItem>(itemList!));
+                            .AddChoices<LineItem>(itemList!)
+                            .UseConverter<LineItem>(DisplaySelector));
             
             itemList!.Remove(selectedLineItem);
             break;
@@ -143,11 +145,22 @@ while (userWishesToContinue)
         case "Save and Exit":
             Console.WriteLine("Goodbye!");
             string saveState = JsonConvert.SerializeObject(itemList, Formatting.Indented);
-            File.WriteAllText(@"C:\\temp\WorkingList.txt", saveState);
+            File.WriteAllText(PathToJson, saveState);
             userWishesToContinue = false;
             break;
 
         default:
             break;
     }
+}
+
+
+
+string DisplaySelector (LineItem lineitem)
+{
+    string result;
+
+    result = $"{lineitem.quantity}    {lineitem.metalColor}    {lineitem.customerName}"; 
+
+    return result;
 }
