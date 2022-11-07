@@ -30,9 +30,11 @@ while (userWishesToContinue)
     switch (optionSelected)
     {
         case "Create New Item":
-            Console.WriteLine("Enter a Quantity");
-            int quantity = int.Parse(Console.ReadLine()!);
-            
+
+            Console.Clear();
+            int quantity = AnsiConsole.Ask<int>("Enter Quantity: ");
+            Console.Clear();
+
             var metalColorSelected = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("Select a Color")
@@ -44,9 +46,9 @@ while (userWishesToContinue)
                         "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
                     }));
             
-            Console.WriteLine("Enter a Customer Name");
-            string? customerName = Console.ReadLine();
+            string? customerName = AnsiConsole.Ask<string>("Enter Customer Name: ");
 
+            Console.Clear();
 
             var priority = AnsiConsole.Prompt(
                 new SelectionPrompt<int>()
@@ -64,34 +66,41 @@ while (userWishesToContinue)
             Console.WriteLine("Current List");
             foreach (var lineItem in itemList!)
             {
-                Console.WriteLine(lineItem.quantity);
-                Console.WriteLine(lineItem.metalColor);
-                Console.WriteLine(lineItem.customerName);
-                Console.WriteLine(lineItem.priorityFactor);
-                Console.WriteLine(lineItem.isMade);
+                Console.WriteLine($"{lineItem.quantity}  {lineItem.metalColor}  {lineItem.customerName}  {lineItem.priorityFactor}  {lineItem.isMade}");
             }
             break;
 
         case "Update an Item":
-            Console.WriteLine("Which Item Shall Be Updated?");
-            int lineNumber = int.Parse(Console.ReadLine()!);
+            Console.Clear();
+            var lineItemToUpdate = AnsiConsole.Prompt(
+                        new SelectionPrompt<LineItem>()
+                            .Title("Select an Item to Update")
+                            .PageSize(10)
+                            .MoreChoicesText("[grey](Move up and down to reveal more items)[/]")
+                            .AddChoices<LineItem>(itemList!)
+                            .UseConverter<LineItem>(DisplaySelector));
 
-            Console.WriteLine("What do you wish to update?");
-            Console.WriteLine("[1] Quantity");
-            Console.WriteLine("[2] Metal Color");
-            Console.WriteLine("[3] Customer Name");
-            Console.WriteLine("[4] Priority");
-            int selection = int.Parse(Console.ReadLine()!);
+            int lineNumber = itemList!.IndexOf(lineItemToUpdate);
 
-            switch (selection)
+         
+            var selection = AnsiConsole.Prompt(
+                        new SelectionPrompt<string>()
+                            .Title("Update:")
+                            .PageSize(10)
+                            .MoreChoicesText("[grey](Move up and down to reveal more)[/]")
+                            .AddChoices(new[] {
+                                "Quantity", "Metal Color", "Customer Name",
+                                "Priority", }));
+
+                switch (selection)
             {
-                case 1:
+                case "Quantity":
                     Console.WriteLine("Enter New Quantity");
                     int newQuantity = int.Parse(Console.ReadLine()!);
-                    itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newQuantity);
+                    itemList![lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newQuantity);
                     break;
-
-                case 2:
+                    
+                case "Metal Color":
                     var newMetalColor = AnsiConsole.Prompt(
                         new SelectionPrompt<string>()
                             .Title("Select a Color")
@@ -103,16 +112,16 @@ while (userWishesToContinue)
                              "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
 
                             }));
-                    itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newMetalColor);
+                    itemList![lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newMetalColor);
                     break;
 
-                case 3:
+                case "Customer Name":
                     Console.WriteLine("Enter New Customer Name");
                     string? newCustomerName = Console.ReadLine();
-                    itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newCustomerName, true);
+                    itemList![lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newCustomerName, true);
                     break;
 
-                case 4:
+                case "Priority":
                     var newPriorityFactor = AnsiConsole.Prompt(
                         new SelectionPrompt<int>()
                             .Title("Select a Priority Factor")
@@ -121,7 +130,7 @@ while (userWishesToContinue)
                             .AddChoices(new[] {
                              1, 2, 3,
                             }));
-                    itemList![lineNumber] = LineItem.updateLineItem(itemList[lineNumber], newPriorityFactor, true);
+                    itemList![lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newPriorityFactor, true);
                     break;
 
                 default:
@@ -130,7 +139,8 @@ while (userWishesToContinue)
             break;
 
         case "Delete an Item":
-
+           
+            Console.Clear();
             var selectedLineItem = AnsiConsole.Prompt(
                         new SelectionPrompt<LineItem>()
                             .Title("Select an Item to Delete")
