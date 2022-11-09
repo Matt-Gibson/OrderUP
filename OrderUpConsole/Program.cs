@@ -7,11 +7,11 @@ Console.WriteLine("");
 
 var itemList = new List<LineItem>();
 var userWishesToContinue = true;
-const string PathToJson = @"D:\\WorkingList.txt";
+var pathToJson = Directory.GetCurrentDirectory() + "\\workinglist.txt";
 
-if (File.Exists(PathToJson))
+if (File.Exists(pathToJson))
 {
-    string loadingString = File.ReadAllText(PathToJson);
+    string loadingString = File.ReadAllText(pathToJson);
     itemList = JsonConvert.DeserializeObject<List<LineItem>>(loadingString);
 }
 
@@ -46,7 +46,7 @@ while (userWishesToContinue)
                         "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
                     }));
             
-            string? customerName = AnsiConsole.Ask<string>("Enter Customer Name: ");
+            string customerName = AnsiConsole.Ask<string>("Enter Customer Name: ");
 
             Console.Clear();
 
@@ -97,7 +97,7 @@ while (userWishesToContinue)
                 case "Quantity":
                     Console.WriteLine("Enter New Quantity");
                     int newQuantity = int.Parse(Console.ReadLine()!);
-                    itemList![lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newQuantity);
+                    itemList[lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newQuantity);
                     break;
                     
                 case "Metal Color":
@@ -112,13 +112,13 @@ while (userWishesToContinue)
                              "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
 
                             }));
-                    itemList![lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newMetalColor);
+                    itemList[lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newMetalColor);
                     break;
 
                 case "Customer Name":
                     Console.WriteLine("Enter New Customer Name");
                     string? newCustomerName = Console.ReadLine();
-                    itemList![lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newCustomerName, true);
+                    itemList[lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newCustomerName, true);
                     break;
 
                 case "Priority":
@@ -130,10 +130,7 @@ while (userWishesToContinue)
                             .AddChoices(new[] {
                              1, 2, 3,
                             }));
-                    itemList![lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newPriorityFactor, true);
-                    break;
-
-                default:
+                    itemList[lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newPriorityFactor, true);
                     break;
             }
             break;
@@ -155,11 +152,8 @@ while (userWishesToContinue)
         case "Save and Exit":
             Console.WriteLine("Goodbye!");
             string saveState = JsonConvert.SerializeObject(itemList, Formatting.Indented);
-            File.WriteAllText(PathToJson, saveState);
+            File.WriteAllText(pathToJson, saveState);
             userWishesToContinue = false;
-            break;
-
-        default:
             break;
     }
 }
@@ -168,9 +162,7 @@ while (userWishesToContinue)
 
 string DisplaySelector (LineItem lineitem)
 {
-    string result;
-
-    result = $"{lineitem.quantity}    {lineitem.metalColor}    {lineitem.customerName}"; 
+    var result = $"{lineitem.quantity}    {lineitem.metalColor}    {lineitem.customerName}"; 
 
     return result;
 }
