@@ -59,14 +59,14 @@ while (userWishesToContinue)
                         1, 2, 3,
                     }));
 
-            itemList!.Add(LineItem.createLineItem(quantity, metalColorSelected, customerName, priority));
+            itemList!.Add(LineItem.CreateLineItem(quantity, metalColorSelected, customerName, priority));
             break;
 
         case "View Current List":
             Console.WriteLine("Current List");
             foreach (var lineItem in itemList!)
             {
-                Console.WriteLine($"{lineItem.quantity}  {lineItem.metalColor}  {lineItem.customerName}  {lineItem.priorityFactor}  {lineItem.isMade}");
+                Console.WriteLine($"{lineItem.Quantity}  {lineItem.MetalColor}  {lineItem.CustomerName}  {lineItem.PriorityFactor}  {lineItem.IsMade}");
             }
             break;
 
@@ -97,7 +97,7 @@ while (userWishesToContinue)
                 case "Quantity":
                     Console.WriteLine("Enter New Quantity");
                     int newQuantity = int.Parse(Console.ReadLine()!);
-                    itemList[lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newQuantity);
+                    itemList[lineNumber] = LineItem.UpdateLineItem(lineItemToUpdate, newQuantity);
                     break;
                     
                 case "Metal Color":
@@ -112,13 +112,13 @@ while (userWishesToContinue)
                              "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
 
                             }));
-                    itemList[lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newMetalColor);
+                    itemList[lineNumber] = LineItem.UpdateLineItem(lineItemToUpdate, newMetalColor);
                     break;
 
                 case "Customer Name":
                     Console.WriteLine("Enter New Customer Name");
                     string? newCustomerName = Console.ReadLine();
-                    itemList[lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newCustomerName, true);
+                    itemList[lineNumber] = LineItem.UpdateLineItem(lineItemToUpdate, newCustomerName, true);
                     break;
 
                 case "Priority":
@@ -130,7 +130,7 @@ while (userWishesToContinue)
                             .AddChoices(new[] {
                              1, 2, 3,
                             }));
-                    itemList[lineNumber] = LineItem.updateLineItem(lineItemToUpdate, newPriorityFactor, true);
+                    itemList[lineNumber] = LineItem.UpdateLineItem(lineItemToUpdate, newPriorityFactor, true);
                     break;
             }
             break;
@@ -160,9 +160,9 @@ while (userWishesToContinue)
 
 
 
-string DisplaySelector (LineItem lineitem)
+static string DisplaySelector (LineItem lineitem)
 {
-    var result = $"{lineitem.quantity}    {lineitem.metalColor}    {lineitem.customerName}"; 
+    var result = $"{lineitem.Quantity}    {lineitem.MetalColor}    {lineitem.CustomerName}"; 
 
     return result;
 }
