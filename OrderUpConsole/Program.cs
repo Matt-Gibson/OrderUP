@@ -63,6 +63,7 @@ while (userWishesToContinue)
             break;
 
         case "View Current List":
+            Console.Clear();
             Console.WriteLine("Current List");
             foreach (var lineItem in itemList!)
             {
@@ -99,6 +100,7 @@ while (userWishesToContinue)
                     Console.WriteLine("Enter New Quantity");
                     int newQuantity = int.Parse(Console.ReadLine()!);
                     itemList[indexOfLineItemToUpdate] = LineItem.UpdateQuantity(lineItemToUpdate, newQuantity);
+                    Console.Clear();
                     break;
                     
                 case "Metal Color":
@@ -114,12 +116,14 @@ while (userWishesToContinue)
 
                             }));
                     itemList[indexOfLineItemToUpdate] = LineItem.UpdateMetalColor(lineItemToUpdate, newMetalColor);
+                    Console.Clear();
                     break;
 
                 case "Customer Name":
                     Console.WriteLine("Enter New Customer Name");
                     string? newCustomerName = Console.ReadLine();
                     itemList[indexOfLineItemToUpdate] = LineItem.UpdateCustomerName(lineItemToUpdate, newCustomerName);
+                    Console.Clear();
                     break;
 
                 case "Priority":
@@ -132,6 +136,7 @@ while (userWishesToContinue)
                              1, 2, 3,
                             }));
                     itemList[indexOfLineItemToUpdate] = LineItem.UpdatePriorityFactor(lineItemToUpdate, newPriorityFactor);
+                    Console.Clear();
                     break;
             }
             break;
