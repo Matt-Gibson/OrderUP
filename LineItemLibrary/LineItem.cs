@@ -4,53 +4,53 @@ namespace LineItemLibrary;
 
 public class LineItem
 {
-    public int quantity { get; set; }
-    public string? metalColor { get; set; }
-    public string? customerName { get; set; }
-    public int priorityFactor { get; set; }
-    public bool isMade { get; set; }
+    public int Quantity { get; set; }
+    public string? MetalColor { get; set; }
+    public string? CustomerName { get; set; }
+    public int PriorityFactor { get; set; }
+    public bool IsMade { get; set; }
 
     public LineItem(int quantity, string? metalColor, string? customerName, int priorityFactor, bool isMade = false)
     {
-        this.quantity = quantity;
-        this.metalColor = metalColor;
-        this.customerName = customerName;
-        this.priorityFactor = priorityFactor;
-        this.isMade = isMade;
+        this.Quantity = quantity;
+        this.MetalColor = metalColor;
+        this.CustomerName = customerName;
+        this.PriorityFactor = priorityFactor;
+        this.IsMade = isMade;
     }
 
-    public static LineItem createLineItem(int quantity, string? metalColor, string? customerName, int priorityFactor)
+    public static LineItem CreateLineItem(int quantity, string? metalColor, string? customerName, int priorityFactor)
     {
         return new LineItem(quantity, metalColor, customerName, priorityFactor);
     }
 
-    public static LineItem updateLineItem(LineItem itemToUpdate, int newQuantity)
+    public static LineItem UpdateLineItem(LineItem itemToUpdate, int newQuantity)
     { 
-       itemToUpdate.quantity = newQuantity;
+       itemToUpdate.Quantity = newQuantity;
         return itemToUpdate;
     }
 
-    public static LineItem updateLineItem(LineItem itemToUpdate, string? newMetalColor)
+    public static LineItem UpdateLineItem(LineItem itemToUpdate, string? newMetalColor)
     {
-        itemToUpdate.metalColor = newMetalColor;
+        itemToUpdate.MetalColor = newMetalColor;
         return itemToUpdate;
     }
 
-    public static LineItem updateLineItem(LineItem itemToUpdate, string? newCustomerName, bool overLoad)
+    public static LineItem UpdateLineItem(LineItem itemToUpdate, string? newCustomerName, bool overLoad)
     {
-        itemToUpdate.customerName = newCustomerName;
+        itemToUpdate.CustomerName = newCustomerName;
         return itemToUpdate;
     }
 
-    public static LineItem updateLineItem(LineItem itemToUpdate, int newPriorityFactor, bool overLoad)
+    public static LineItem UpdateLineItem(LineItem itemToUpdate, int newPriorityFactor, bool overLoad)
     {
-        itemToUpdate.priorityFactor = newPriorityFactor;
+        itemToUpdate.PriorityFactor = newPriorityFactor;
         return itemToUpdate;
     }
 
-    public static LineItem updateLineItem(LineItem itemToUpdate, bool newIsMade)
+    public static LineItem UpdateLineItem(LineItem itemToUpdate, bool newIsMade)
     {
-        itemToUpdate.isMade = newIsMade;
+        itemToUpdate.IsMade = newIsMade;
         return itemToUpdate;
     }
 }
