@@ -24,31 +24,31 @@ public class LineItem
         return new LineItem(quantity, metalColor, customerName, priorityFactor);
     }
 
-    public static LineItem UpdateLineItem(LineItem itemToUpdate, int newQuantity)
+    public static LineItem UpdateQuantity(LineItem itemToUpdate, int newQuantity)
     { 
        itemToUpdate.Quantity = newQuantity;
         return itemToUpdate;
     }
 
-    public static LineItem UpdateLineItem(LineItem itemToUpdate, string? newMetalColor)
+    public static LineItem UpdateMetalColor(LineItem itemToUpdate, string? newMetalColor)
     {
         itemToUpdate.MetalColor = newMetalColor;
         return itemToUpdate;
     }
 
-    public static LineItem UpdateLineItem(LineItem itemToUpdate, string? newCustomerName, bool overLoad)
+    public static LineItem UpdateCustomerName(LineItem itemToUpdate, string? newCustomerName)
     {
         itemToUpdate.CustomerName = newCustomerName;
         return itemToUpdate;
     }
 
-    public static LineItem UpdateLineItem(LineItem itemToUpdate, int newPriorityFactor, bool overLoad)
+    public static LineItem UpdatePriorityFactor(LineItem itemToUpdate, int newPriorityFactor)
     {
         itemToUpdate.PriorityFactor = newPriorityFactor;
         return itemToUpdate;
     }
 
-    public static LineItem UpdateLineItem(LineItem itemToUpdate, bool newIsMade)
+    public static LineItem UpdateIsMade(LineItem itemToUpdate, bool newIsMade)
     {
         itemToUpdate.IsMade = newIsMade;
         return itemToUpdate;

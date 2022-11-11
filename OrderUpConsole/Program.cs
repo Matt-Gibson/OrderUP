@@ -98,7 +98,7 @@ while (userWishesToContinue)
                 case "Quantity":
                     Console.WriteLine("Enter New Quantity");
                     int newQuantity = int.Parse(Console.ReadLine()!);
-                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateLineItem(lineItemToUpdate, newQuantity);
+                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateQuantity(lineItemToUpdate, newQuantity);
                     break;
                     
                 case "Metal Color":
@@ -113,13 +113,13 @@ while (userWishesToContinue)
                              "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
 
                             }));
-                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateLineItem(lineItemToUpdate, newMetalColor);
+                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateMetalColor(lineItemToUpdate, newMetalColor);
                     break;
 
                 case "Customer Name":
                     Console.WriteLine("Enter New Customer Name");
                     string? newCustomerName = Console.ReadLine();
-                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateLineItem(lineItemToUpdate, newCustomerName, true);
+                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateCustomerName(lineItemToUpdate, newCustomerName);
                     break;
 
                 case "Priority":
@@ -131,7 +131,7 @@ while (userWishesToContinue)
                             .AddChoices(new[] {
                              1, 2, 3,
                             }));
-                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateLineItem(lineItemToUpdate, newPriorityFactor, true);
+                    itemList[indexOfLineItemToUpdate] = LineItem.UpdatePriorityFactor(lineItemToUpdate, newPriorityFactor);
                     break;
             }
             break;
