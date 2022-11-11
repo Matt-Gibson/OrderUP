@@ -68,6 +68,7 @@ while (userWishesToContinue)
             {
                 Console.WriteLine($"{lineItem.Quantity}  {lineItem.MetalColor}  {lineItem.CustomerName}  {lineItem.PriorityFactor}  {lineItem.IsMade}");
             }
+            Console.WriteLine();
             break;
 
         case "Update an Item":
@@ -80,7 +81,7 @@ while (userWishesToContinue)
                             .AddChoices<LineItem>(itemList!)
                             .UseConverter<LineItem>(DisplaySelector));
 
-            int lineNumber = itemList!.IndexOf(lineItemToUpdate);
+            int indexOfLineItemToUpdate = itemList!.IndexOf(lineItemToUpdate);
 
          
             var selection = AnsiConsole.Prompt(
@@ -97,7 +98,7 @@ while (userWishesToContinue)
                 case "Quantity":
                     Console.WriteLine("Enter New Quantity");
                     int newQuantity = int.Parse(Console.ReadLine()!);
-                    itemList[lineNumber] = LineItem.UpdateLineItem(lineItemToUpdate, newQuantity);
+                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateLineItem(lineItemToUpdate, newQuantity);
                     break;
                     
                 case "Metal Color":
@@ -112,13 +113,13 @@ while (userWishesToContinue)
                              "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
 
                             }));
-                    itemList[lineNumber] = LineItem.UpdateLineItem(lineItemToUpdate, newMetalColor);
+                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateLineItem(lineItemToUpdate, newMetalColor);
                     break;
 
                 case "Customer Name":
                     Console.WriteLine("Enter New Customer Name");
                     string? newCustomerName = Console.ReadLine();
-                    itemList[lineNumber] = LineItem.UpdateLineItem(lineItemToUpdate, newCustomerName, true);
+                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateLineItem(lineItemToUpdate, newCustomerName, true);
                     break;
 
                 case "Priority":
@@ -130,7 +131,7 @@ while (userWishesToContinue)
                             .AddChoices(new[] {
                              1, 2, 3,
                             }));
-                    itemList[lineNumber] = LineItem.UpdateLineItem(lineItemToUpdate, newPriorityFactor, true);
+                    itemList[indexOfLineItemToUpdate] = LineItem.UpdateLineItem(lineItemToUpdate, newPriorityFactor, true);
                     break;
             }
             break;
