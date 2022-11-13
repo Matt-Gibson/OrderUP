@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Spectre.Console;
 
+Console.Title = "OrderUp";
 Console.WriteLine("Welcome to OrderUp");
 Console.WriteLine("");
 
@@ -32,7 +33,17 @@ while (userWishesToContinue)
         case "Create New Item":
 
             Console.Clear();
-            int quantity = AnsiConsole.Ask<int>("Enter Quantity: ");
+            int quantity = AnsiConsole.Prompt(
+                new TextPrompt<int>("Enter Quantity: ")
+                    .ValidationErrorMessage("[red]Error Try Again[/]")
+                    .Validate(quantity =>
+                     {
+                       return quantity switch
+                        {
+                          <= 0 => ValidationResult.Error("[red]That's just silly.[/]"),
+                          _ => ValidationResult.Success(),
+                         };
+                     }));
             Console.Clear();
 
             var metalColorSelected = AnsiConsole.Prompt(
@@ -67,7 +78,7 @@ while (userWishesToContinue)
             Console.WriteLine("Current List");
             foreach (var lineItem in itemList!)
             {
-                Console.WriteLine($"{lineItem.Quantity}  {lineItem.MetalColor}  {lineItem.CustomerName}  {lineItem.PriorityFactor}  {lineItem.IsMade}");
+                Console.WriteLine($"  {lineItem.Quantity}  {lineItem.MetalColor}  {lineItem.CustomerName}  {lineItem.PriorityFactor}  {lineItem.IsMade}");
             }
             Console.WriteLine();
             break;
@@ -98,7 +109,17 @@ while (userWishesToContinue)
             {
                 case "Quantity":
                     Console.WriteLine("Enter New Quantity");
-                    int newQuantity = int.Parse(Console.ReadLine()!);
+                    int newQuantity = AnsiConsole.Prompt(
+                        new TextPrompt<int>("Enter Quantity: ")
+                            .ValidationErrorMessage("[red]Error Try Again[/]")
+                            .Validate(newQuantity =>
+                            {
+                               return newQuantity switch
+                              {
+                                <= 0 => ValidationResult.Error("[red]That's just silly.[/]"),
+                                _ => ValidationResult.Success(),
+                              };
+                            }));
                     itemList[indexOfLineItemToUpdate] = LineItem.UpdateQuantity(lineItemToUpdate, newQuantity);
                     Console.Clear();
                     break;
@@ -111,8 +132,8 @@ while (userWishesToContinue)
                             .MoreChoicesText("[grey](Move up and down to reveal more colors)[/]")
                             .AddChoices(new[] {
                              "#2 White", "Barn Red", "Black", "Bright Red", "Brown", "Buckskin Tan", "Burnished Slate",
-                             "Charcoal", "Clay", "Copper Penny", "Dark Red", "Gallery Blue", "Galvalume", "Gray",
-                             "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
+                             "Charcoal", "Clay", "Copper Penny", "Crinkle Brown", "Dark Red", "Gallery Blue", "Galvalume",
+                             "Gray", "Green", "Hawaiian Blue", "Light Stone", "Sapphire Blue", "Tan", "Plum", "White",
 
                             }));
                     itemList[indexOfLineItemToUpdate] = LineItem.UpdateMetalColor(lineItemToUpdate, newMetalColor);
