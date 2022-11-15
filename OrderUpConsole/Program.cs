@@ -172,9 +172,18 @@ while (userWishesToContinue)
                             .MoreChoicesText("[grey](Move up and down to reveal more items)[/]")
                             .AddChoices<LineItem>(itemList!)
                             .UseConverter<LineItem>(DisplaySelector));
-            
-            itemList!.Remove(selectedLineItem);
-            break;
+            var userConfirmsDelete = AnsiConsole.Prompt(
+                        new SelectionPrompt<string>()
+                            .Title($"Are you sure you want to delete this item?\n\n{DisplaySelector(selectedLineItem)}")
+                            .AddChoices(new[] {
+                             "Yes", "No",
+                            }));
+            if (userConfirmsDelete == "Yes")
+            {
+                itemList!.Remove(selectedLineItem);
+                break;
+            }
+                break;
 
         case "Save and Exit":
             Console.WriteLine("Goodbye!");
