@@ -10,6 +10,12 @@ var itemList = new List<LineItem>();
 var userWishesToContinue = true;
 var pathToJson = Directory.GetCurrentDirectory() + "\\workinglist.txt";
 
+if (OperatingSystem.IsLinux() || OperatingSystem.IsMacOS())
+{
+    pathToJson = Directory.GetCurrentDirectory() + "/workinglist.txt";
+}
+
+
 if (File.Exists(pathToJson))
 {
     string loadingString = File.ReadAllText(pathToJson);
